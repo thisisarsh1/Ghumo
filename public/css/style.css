@@ -1,0 +1,22 @@
+.navbar{
+    height: 5rem;
+    background-color: rgb(255, 240, 240);
+}
+.navbar-brand{
+    color: #fe424d;
+    font-size: 2rem;
+}
+.navbar-nav{
+    background-color: rgb(255, 240, 240);
+  transition: ease-in;
+  width: 100% !important
+}
+.soci a{
+    color: black;
+    font-size: 1.5rem;
+    align-items: space-around;
+}
+footer{
+    text-align: center;
+
+}
