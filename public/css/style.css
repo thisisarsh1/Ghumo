@@ -94,3 +94,35 @@ footer{
     background-color: #000000 !important;
     /* transition: .5s ease-in-out; */
     }
+
+    .parallax-text{
+        position: absolute;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 23vw;
+        font-style: italic;
+        font-weight: 700;
+      }
+      
+      .parallax-text::after{
+        content: attr(text);
+        position: absolute;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        color: transparent;
+        -webkit-text-stroke: 0.15vw black;
+      }
+      
+      /* .imgs{margin-top: 5rem;
+        width: 35vw;
+        animation: sneakerAnimation 2.5s  cubic-bezier(.25, 1.5, .5, 1) infinite alternate-reverse ;
+      }
+      
+      @keyframes sneakerAnimation {
+        90%, 100%{
+          transform:  translate(100vw, 0vw) rotate(90deg);
+        }
+          0%, 10%{
+          transform:  translate(-5vw, -5vw) rotate(-90deg);
+        }
+      } */

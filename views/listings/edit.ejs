@@ -2,19 +2,22 @@
 <link rel="stylesheet" href="css/style.css">
 <body>
     <h3>Edit your Listing!</h3>
-    <form method="post" action="/listings/<%= listing._id %>?_method=PUT">
+    <form method="post" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
         
      <div class="row">
         <div class="col-8">
 
             <div class="mb-3">
-                <lable for="title" class="form-lable">Title</lable>
-                <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control">
+                <lable for="validationCustom01" class="form-lable">Title</lable>
+                <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" id="validationCustom01"  required>
+                <div class="invalid-feedback">
+                    Title is Required !
+                  </div>    
             </div>
             
             <div class="mb-3">
-                <lable for="description" class="form-lable">description</lable>
-                <input name="listing[description]" value="<%= listing.description %>" type="text" class="form-control">
+                <lable for="validationCustom02" class="form-lable">description</lable>
+                <input name="listing[description]" value="<%= listing.description %>" type="text" class="form-control"id="validationCustom02"  required>
         
             </div>
         
@@ -26,14 +29,16 @@
             
             <div class="row">
                 <div class="mb-3 col-4">
-                    <lable for="price" class="form-lable">price</lable>
-                    <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control">
-            
+                    <lable for="validationCustom03" class="form-lable">price</lable>
+                    <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" id="validationCustom03"  required>
+                    <div class="invalid-feedback">
+                        Set a price ! 
+                      </div>    
                 </div> 
 
                 <div class="mb-3 col-8">
-                    <lable for="country" class="form-lable">country</lable>
-                    <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control">
+                    <lable for="validationCustom04" class="form-lable">country</lable>
+                    <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control" id="validationCustom04"  required>
             
                 </div> 
             
@@ -41,8 +46,8 @@
             </div>
             
             <div class="mb-3">
-                <lable for="location" class="form-lable">location</lable>
-                <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control">
+                <lable for="validationCustom05" class="form-lable">location</lable>
+                <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control" id="validationCustom05"  required>
         
             </div> 
             
