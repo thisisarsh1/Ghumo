@@ -126,3 +126,7 @@ footer{
           transform:  translate(-5vw, -5vw) rotate(-90deg);
         }
       } */
+
+      .alert{
+        text-align: center;
+      }
