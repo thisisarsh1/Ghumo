@@ -1,0 +1,198 @@
+#scroll-animate
+{
+  overflow: hidden;
+}
+
+#scroll-animate-main
+{
+  width: 100%;
+  left: 0;
+  position: fixed;
+}
+
+#heightPage,
+#heightScroll
+{
+  width: 10px;
+  top: 0;
+  position: relative;
+  z-index: 99;
+}
+
+#heightPage
+{
+  left: 0;
+}
+
+#heightScroll
+{
+  right: 0;
+}
+
+.head
+{
+  width: 100%;
+  height: 90vh;
+  background: url(https://raw.githubusercontent.com/hudsonmarinho/header-and-footer-parallax-effect/master/assets/images/bg-header.jpg) no-repeat 50% 50%;
+  top: 0;
+  position: fixed;
+  z-index: -1;
+}
+
+.foot
+{
+  width: 100%;
+  height: 100px;
+  background: rgb(125, 125, 125);
+  bottom: 10px;
+  position: fixed;
+  z-index: -1;
+}
+
+.content
+{
+  height: 1000px;
+  min-height: 1000px;
+  background: #ededed;
+  position: relative;
+  z-index: 1;
+}
+
+.wrapper-parallax {
+  margin-top: 100%;
+  margin-bottom: 300px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+h1{
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 150px;
+  color: #fff;
+}
+
+
+
+.content h1{
+  line-height: 1000px;
+  color: #999;
+}
+
+.foot h1
+{
+  line-height: 300px;
+}
+
+.head,
+.foot,
+#scroll-animate-main
+{
+  -webkit-transition-property: all;
+     -moz-transition-property: all;
+      transition-property: all;
+
+  -webkit-transition-duration: 0.4s;
+     -moz-transition-duration: 0.4s;
+      transition-duration: 0.4s;
+
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0, .5);
+     -moz-transition-timing-function: cubic-bezier(0, 0, 0, .5);
+      transition-timing-function: cubic-bezier(0, 0, 0, .5);
+}
+
+/* TEXT */
+
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:900&display=swap');
+
+
+#container {
+	/* Center the text in the viewport. */
+	position: absolute;
+	margin: auto;
+	width: 100vw;
+	height: 80pt;
+	top: 0;
+	bottom: 90%;
+	
+	/* This filter is a lot of the magic, try commenting it out to see how the morphing works! */
+	filter: url(#threshold) blur(0.6px);
+}
+
+/* Your average text styling */
+#text1, #text2 {
+	position: absolute;
+	width: 100%;
+	display: inline-block;
+	
+	font-family: 'Raleway', sans-serif;
+	font-size: 15rem;
+	
+	text-align: center;
+	
+	user-select: none;
+  color: white;
+}
+.mainbtn{
+  display: flex !important;
+  justify-content: center;
+ 
+}
+.main{
+  margin-top: 350% ;
+  
+
+}
+
+.soci a{
+    color: black;
+    font-size: 2rem;
+    align-items: space-around;
+    margin: 1rem;
+}
+.soci a:hover{
+    color:#fe424d;
+    transition: .3s ease-in-out;
+}
+
+footer{
+    text-align: center;
+    background-color: #eaeaea;
+
+}
+.links a {
+    text-decoration: none;
+    margin-left: 1rem;
+    color: black;
+}
+.links  :hover{
+    text-decoration: underline solid black;
+
+
+}
+
+.navbar{
+  height: 5rem;
+  background-color: rgba(255, 240, 240, 0.365);
+  font-size: 1.5rem;
+
+}
+
+.navbar-nav{
+
+transition: ease-in;
+width: 100% !important;
+display: flex !important;
+justify-content: center !important;
+font-weight: 500;
+
+
+}
+.nav-link{
+  margin-left: 2rem !important;
+}

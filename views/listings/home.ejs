@@ -1,16 +1,194 @@
-<% layout('/layouts/boilerplate') %>
+
+<link rel="stylesheet" href="./css/main.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+ 
+
 <body>
-    
+
+
+  <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
       
-      <!-- <img class="imgs" src="/css/imgs/earth_4k_stock_by_hameed-db5roja Background Removed.png" alt="Icon"> -->
-<br>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link " aria-current="page" href="/">Home</a>
+          <a class="nav-link" href="/listings">All listings</a>
+          <a class="nav-link" href="/listings/new">Add new listing !</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-    <form method="get" action="/listings">
-        <button class="btn btn-dark offset-5">Take me to listings</button>
-    </form>
+    <div id="scroll-animate">
+      <div id="scroll-animate-main">
+        <div class="wrapper-parallax">
+          <header class="head">
+        
 
-    <span class="parallax-text" text="GHUMO">
-        GHUMO
-      </span>
+            <div id="container">
+              <span id="text1"></span>
+              <span id="text2"></span>
+            </div>
+            
+            <!-- The SVG filter used to create the merging effect -->
+            <svg id="filters">
+              <defs>
+                <filter id="threshold">
+                  <!-- Basically just a threshold effect - pixels with a high enough opacity are set to full opacity, and all other pixels are set to completely transparent. -->
+                  <feColorMatrix in="SourceGraphic"
+                      type="matrix"
+                      values="1 0 0 0 0
+                              0 1 0 0 0
+                              0 0 1 0 0
+                              0 0 0 255 -140" />
+                </filter>
+              </defs>
+            </svg>
+
+          </header>
+    
+          <section class="content">
+            <div class="mainbtn">
+            <form method="get" action="/listings">
+              <button class="btn btn-dark main">Take me to listings</button>
+            </form>
+          </div>
+
+          
+                
+
+
+          </section>
+    
+          <footer class="foot">
+            <div class="soci">
+              <a href="https://www.linkedin.com/in/rehbar-khan/"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="https://twitter.com/Rehbar2004"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="https://github.com/thisisarsh1"><i class="fa-brands fa-github"></i></a>
+          </div>
+          <div class="name">
+              ©Ghumo Private Limited
+          </div>
+          <div class="links">
+              <a href="/privacy">privacy</a>
+              <a href="/terms">Terms and condition</a>
+              
+          </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="./js/main.js"></script>
+
+  
+
+        
+
+      
+        
+          
+      <script>
+        const elts = {
+        text1: document.getElementById("text1"),
+        text2: document.getElementById("text2")
+      };
+
+      // The strings to morph between. You can change these to anything you want!
+      const texts = [
+        "Go !",
+        "Book",
+        "A",
+        "Vacation",
+        "Why",
+        "Wait ?"
+      ];
+
+      // Controls the speed of morphing.
+      const morphTime = 1;
+      const cooldownTime = 0.25;
+
+      let textIndex = texts.length - 1;
+      let time = new Date();
+      let morph = 0;
+      let cooldown = cooldownTime;
+
+      elts.text1.textContent = texts[textIndex % texts.length];
+      elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+
+      function doMorph() {
+        morph -= cooldown;
+        cooldown = 0;
+        
+        let fraction = morph / morphTime;
+        
+        if (fraction > 1) {
+          cooldown = cooldownTime;
+          fraction = 1;
+        }
+        
+        setMorph(fraction);
+      }
+
+      // A lot of the magic happens here, this is what applies the blur filter to the text.
+      function setMorph(fraction) {
+        // fraction = Math.cos(fraction * Math.PI) / -2 + .5;
+        
+        elts.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+        
+        fraction = 1 - fraction;
+        elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+        
+        elts.text1.textContent = texts[textIndex % texts.length];
+        elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+      }
+
+      function doCooldown() {
+        morph = 0;
+        
+        elts.text2.style.filter = "";
+        elts.text2.style.opacity = "100%";
+        
+        elts.text1.style.filter = "";
+        elts.text1.style.opacity = "0%";
+      }
+
+      // Animation loop, which is called every frame.
+      function animate() {
+        requestAnimationFrame(animate);
+        
+        let newTime = new Date();
+        let shouldIncrementIndex = cooldown > 0;
+        let dt = (newTime - time) / 1000;
+        time = newTime;
+        
+        cooldown -= dt;
+        
+        if (cooldown <= 0) {
+          if (shouldIncrementIndex) {
+            textIndex++;
+          }
+          
+          doMorph();
+        } else {
+          doCooldown();
+        }
+      }
+
+      // Start the animation.
+      animate();
+      </script>
+
+
+
 
 </body>

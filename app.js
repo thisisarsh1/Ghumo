@@ -8,6 +8,8 @@ const methodOverride = require ("method-override")
 const ejsMate = require("ejs-mate")
 const wrapAsync = require("./utlis/wrapAsync.js")
 const ExpressError = require("./utlis/ExpressError.js")
+const Review = require ('/Users/rehbarkhan/Documents/codebox/major project/models/review.js')
+
 main().then(()=>{
     console.log("Main is working!")
     
@@ -32,6 +34,12 @@ app.get("/",wrapAsync(async(req,res)=>{
 res.render("listings/home.ejs")
 }))
 
+//main page
+app.get("/main",wrapAsync(async(req,res)=>{
+   
+    res.render("listings/main.ejs")
+    })) 
+
 //index Route!
 app.get("/listings",wrapAsync(async(req,res)=>{
     const allListings =await Listing .find({});
@@ -42,17 +50,30 @@ app.get("/listings/new",(req,res)=>{
     res.render("listings/new.ejs");
 })
 
+//review route
+//post 
+app.post("/listings/:id/reviews",wrapAsync(async(req,res)=>{
+    let listing = await Listing.findById(req.params.id);
+    let newReview = new Review (req.body.review)
+    listing.reviews.push(newReview)
+    await newReview.save()
+    await listing.save()
+    console.log("new review saved")
+    res.send("New review saved")
+    
+}))
+
 //Show route
 app.get("/listings/:id",wrapAsync(async(req,res)=>{
     let {id} = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs",{listing});
 })
 )
 //create route
 app.post("/listings",wrapAsync(async (req,res,next)=>{
     if(!req.body.listing){
-        throw new ExpressError(404,"Send validation Data for listing")
+        throw new ExpressError(404,"Send valid Data for listing")
     }
         const newListing=new Listing(req.body.listing);
         await newListing.save();
@@ -94,6 +115,7 @@ app.use((err,req,res,next)=>{
     let {statusCode,message} = err;
     // res.status(statusCode).send(message)
     res.render("./listings/error.ejs",{err})
+    console.log(err)
     
 });
 app.get("/",(req,res)=>{
